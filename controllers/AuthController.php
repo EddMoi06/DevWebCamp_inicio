@@ -35,7 +35,7 @@ class AuthController {
                         $_SESSION['admin'] = $usuario->admin ?? null;
                         
                     } else {
-                        Usuario::setAlerta('error', 'Password Incorrecto');
+                        Usuario::setAlerta('error', 'Contraseña Incorrecta');
                     }
                 }
             }
@@ -199,7 +199,7 @@ class AuthController {
         
         // Muestra la vista
         $router->render('auth/reestablecer', [
-            'titulo' => 'Reestablecer Password',
+            'titulo' => 'Reestablecer tu Contraseña',
             'alertas' => $alertas,
             'token_valido' => $token_valido
         ]);
