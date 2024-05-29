@@ -1,7 +1,11 @@
 <main class="auth">
     <h2 class="auth__heading"><?php echo $titulo ?></h2>
 
-    <form action="" class="formulario">
+    <?php
+        require_once __DIR__ . '/../templates/alertas.php'; 
+    ?>
+
+    <form action="/login" method="post" class="formulario">
         <div class="formulario__campo">
             <label for="email" class="formulario__label">E-mail</label>
             <input type="email" class="formulario__input" id="email" name="email" placeholder="Ej: correo@correo.com">

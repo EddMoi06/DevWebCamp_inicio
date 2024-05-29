@@ -33,6 +33,12 @@ class AuthController {
                         $_SESSION['apellido'] = $usuario->apellido;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['admin'] = $usuario->admin ?? null;
+
+                        if($usuario->admin){
+                            header('Location: /admin/dashboard');
+                        }else {
+                            header('Location: /finalizar-registro');
+                        }
                         
                     } else {
                         Usuario::setAlerta('error', 'Contraseña Incorrecta');
@@ -148,7 +154,7 @@ class AuthController {
 
         // Muestra la vista
         $router->render('auth/olvide', [
-            'titulo' => 'Olvide mi Password',
+            'titulo' => 'Olvide mi Contraseña',
             'alertas' => $alertas
         ]);
     }
@@ -159,7 +165,7 @@ class AuthController {
 
         $token_valido = true;
 
-        if(!$token) header('Location: /');
+        if(!$token) header('Location: /login');
 
         // Identificar el usuario con este token
         $usuario = Usuario::where('token', $token);
@@ -190,7 +196,7 @@ class AuthController {
 
                 // Redireccionar
                 if($resultado) {
-                    header('Location: /');
+                    header('Location: /login');
                 }
             }
         }
